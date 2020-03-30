@@ -28,28 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.SpassListe = new System.Windows.Forms.ListBox();
+            this.entriesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.EntriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.EintragBox = new System.Windows.Forms.TextBox();
+            this.NewEntryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.AnlegenButton = new System.Windows.Forms.Button();
             this.AuswahlButton = new System.Windows.Forms.Button();
             this.LöschenButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.entriesBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EntriesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewEntryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // SpassListe
             // 
+            this.SpassListe.DataSource = this.entriesBindingSource1;
+            this.SpassListe.DisplayMember = "Value";
             this.SpassListe.FormattingEnabled = true;
             this.SpassListe.Location = new System.Drawing.Point(13, 13);
             this.SpassListe.Name = "SpassListe";
             this.SpassListe.Size = new System.Drawing.Size(328, 160);
             this.SpassListe.TabIndex = 0;
             // 
+            // entriesBindingSource1
+            // 
+            this.entriesBindingSource1.DataMember = "Entries";
+            this.entriesBindingSource1.DataSource = this.EntriesBindingSource;
+            // 
+            // EntriesBindingSource
+            // 
+            this.EntriesBindingSource.DataSource = typeof(UI.ViewModels.EntriesViewModel);
+            // 
             // EintragBox
             // 
+            this.EintragBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.NewEntryBindingSource, "Value", true));
             this.EintragBox.Location = new System.Drawing.Point(500, 13);
             this.EintragBox.Name = "EintragBox";
             this.EintragBox.Size = new System.Drawing.Size(185, 20);
             this.EintragBox.TabIndex = 1;
+            // 
+            // NewEntryBindingSource
+            // 
+            this.NewEntryBindingSource.DataSource = typeof(UI.ViewModels.NewEntryViewModel);
             // 
             // label1
             // 
@@ -68,6 +91,7 @@
             this.AnlegenButton.TabIndex = 3;
             this.AnlegenButton.Text = "Anlegen";
             this.AnlegenButton.UseVisualStyleBackColor = true;
+            this.AnlegenButton.Click += new System.EventHandler(this.AnlegenButton_Click);
             // 
             // AuswahlButton
             // 
@@ -100,6 +124,9 @@
             this.Controls.Add(this.SpassListe);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.entriesBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EntriesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewEntryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,6 +140,9 @@
         private System.Windows.Forms.Button AnlegenButton;
         private System.Windows.Forms.Button AuswahlButton;
         private System.Windows.Forms.Button LöschenButton;
+        private System.Windows.Forms.BindingSource NewEntryBindingSource;
+        private System.Windows.Forms.BindingSource EntriesBindingSource;
+        private System.Windows.Forms.BindingSource entriesBindingSource1;
     }
 }
 
