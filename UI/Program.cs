@@ -17,7 +17,7 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new EntryRepository()));
+            Application.Run(new Form1(new FileEntryRepository()));
         }
     }
 }

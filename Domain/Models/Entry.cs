@@ -7,7 +7,6 @@
         public Entry(string value)
         {
             Value = value;
-            Id = IdCounter++;
         }
 
         public int Id { get; set; }
