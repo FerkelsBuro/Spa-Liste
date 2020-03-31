@@ -14,17 +14,19 @@ namespace UI
 {
     public partial class Form1 : Form
     {
-        EntryRepository entryRepository = new EntryRepository();
+        private IEntryRepository _entryRepository;
 
-        public Form1()
+        public Form1(IEntryRepository entryRepository)
         {
             InitializeComponent();
+
+            _entryRepository = entryRepository;
             LoadEntries();
         }
 
         private void LoadEntries()
         {
-            entryRepository.List()
+            _entryRepository.List()
                 .ToList()
                 .ForEach(e => SpassListe.Items.Add(e.Value));
         }
@@ -34,8 +36,8 @@ namespace UI
             if (EintragBox.Text != "")
             {
                 SpassListe.Items.Add(EintragBox.Text);
-                entryRepository.Add(new Entry(EintragBox.Text));
-                entryRepository.SaveChanges();
+                _entryRepository.Add(new Entry(EintragBox.Text));
+                _entryRepository.SaveChanges();
                 EintragBox.Text = "";
             }
         }
@@ -44,9 +46,9 @@ namespace UI
         {
             if (SpassListe.SelectedIndex != -1)
             {
-                var entryInList = entryRepository.List().FirstOrDefault(z => z.Value == SpassListe.SelectedItem.ToString());
-                entryRepository.Delete(entryInList);
-                entryRepository.SaveChanges();
+                var entryInList = _entryRepository.List().FirstOrDefault(z => z.Value == SpassListe.SelectedItem.ToString());
+                _entryRepository.Delete(entryInList);
+                _entryRepository.SaveChanges();
                 SpassListe.Items.RemoveAt(SpassListe.SelectedIndex);
                 
             }
