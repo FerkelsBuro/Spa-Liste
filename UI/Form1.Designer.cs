@@ -50,6 +50,7 @@
             this.EintragBox.Name = "EintragBox";
             this.EintragBox.Size = new System.Drawing.Size(185, 20);
             this.EintragBox.TabIndex = 1;
+            this.EintragBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EintragBox_KeyDown);
             // 
             // label1
             // 
@@ -68,6 +69,7 @@
             this.AnlegenButton.TabIndex = 3;
             this.AnlegenButton.Text = "Anlegen";
             this.AnlegenButton.UseVisualStyleBackColor = true;
+            this.AnlegenButton.Click += new System.EventHandler(this.AnlegenButton_Click);
             // 
             // AuswahlButton
             // 
@@ -77,6 +79,7 @@
             this.AuswahlButton.TabIndex = 4;
             this.AuswahlButton.Text = "Zufällige Auswahl";
             this.AuswahlButton.UseVisualStyleBackColor = true;
+            this.AuswahlButton.Click += new System.EventHandler(this.AuswahlButton_Click);
             // 
             // LöschenButton
             // 
@@ -86,6 +89,7 @@
             this.LöschenButton.TabIndex = 5;
             this.LöschenButton.Text = "Löschen";
             this.LöschenButton.UseVisualStyleBackColor = true;
+            this.LöschenButton.Click += new System.EventHandler(this.LöschenButton_Click);
             // 
             // Form1
             // 
