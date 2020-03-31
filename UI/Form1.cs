@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Models;
+using Infrastructure.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +14,11 @@ namespace UI
 {
     public partial class Form1 : Form
     {
+        EntryRepository entryRepository = new EntryRepository();
+
         public Form1()
         {
             InitializeComponent();
-
-            
         }
 
         private void AnlegenButton_Click(object sender, EventArgs e)
@@ -24,13 +26,24 @@ namespace UI
             if (EintragBox.Text != "")
             {
                 SpassListe.Items.Add(EintragBox.Text);
+                entryRepository.Add(new Entry(EintragBox.Text));
                 EintragBox.Text = "";
             }
         }
 
         private void LöschenButton_Click(object sender, EventArgs e)
         {
-            SpassListe.Items.Clear();
+            if (SpassListe.SelectedIndex != -1)
+            {
+                var entryInList = entryRepository.List().FirstOrDefault(z => z.Value == SpassListe.SelectedItem.ToString());
+                entryRepository.Delete(entryInList);
+                SpassListe.Items.RemoveAt(SpassListe.SelectedIndex);
+                
+            }
+            else
+            {
+                MessageBox.Show("Kein Element ausgewählt!");
+            }
         }
 
         private void AuswahlButton_Click(object sender, EventArgs e)
