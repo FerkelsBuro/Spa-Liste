@@ -19,6 +19,14 @@ namespace UI
         public Form1()
         {
             InitializeComponent();
+            LoadEntries();
+        }
+
+        private void LoadEntries()
+        {
+            entryRepository.List()
+                .ToList()
+                .ForEach(e => SpassListe.Items.Add(e.Value));
         }
 
         private void AnlegenButton_Click(object sender, EventArgs e)
@@ -27,6 +35,7 @@ namespace UI
             {
                 SpassListe.Items.Add(EintragBox.Text);
                 entryRepository.Add(new Entry(EintragBox.Text));
+                entryRepository.SaveChanges();
                 EintragBox.Text = "";
             }
         }
@@ -37,6 +46,7 @@ namespace UI
             {
                 var entryInList = entryRepository.List().FirstOrDefault(z => z.Value == SpassListe.SelectedItem.ToString());
                 entryRepository.Delete(entryInList);
+                entryRepository.SaveChanges();
                 SpassListe.Items.RemoveAt(SpassListe.SelectedIndex);
                 
             }

@@ -30,12 +30,10 @@ namespace Infrastructure.Repositories
 
         public void SaveChanges()
         {
-            throw new System.NotImplementedException();
         }
 
         public void Update(Entry entry)
         {
-            throw new System.NotImplementedException();
         }
     }
 }
